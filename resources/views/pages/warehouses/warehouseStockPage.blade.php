@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'Главная')
+@section('title', 'Склады')
 @section('warehousesPageState', 'active')
 @section('content')
     <h1>Содержимое склада "{{$warehouse->name}}"</h1>
