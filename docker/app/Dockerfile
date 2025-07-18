@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
-    vim \
     unzip \
     git \
     curl \
@@ -21,28 +20,50 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libonig-dev \
     libzip-dev \
-    libxml2-dev
+    libxml2-dev \
+    default-mysql-client \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+
+# Устанавливаем расширения PHP
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    pdo_pgsql \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    soap \
+    zip \
+    intl \
+    opcache
 
 # Очищаем кэш
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Устанавливаем Redis
+RUN pecl install redis && docker-php-ext-enable redis
+
 # Загружаем актуальную версию Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd soap
-
-# Создаём пользователя и группу www для приложения Laravel
-RUN groupadd --force -g 1000 www-data
-
+# Создаём пользователя и группу
+RUN groupadd --force -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Копируем содержимое текущего каталога в рабочую директорию
-COPY . /var/www
-COPY --chown=www:www . /var/www
+COPY --chown=www:www . /var/www/html
 
-# Меняем пользователя на www
+# Создаем дерриктории и устанавливаем права
+RUN mkdir -p /var/www/html/storage && mkdir -p /var/www/html/bootstrap/cache
 
+RUN chown -R www:www /var/www/html && chmod -R 775 /var/www/html/storage && chmod -R 775 /var/www/html/bootstrap/cache
 
+# Переключаемся на пользователя www
+USER www
 
-# В контейнере открываем 8000 порт и запускаем сервер php-fpm
+# В контейнере открываем порт и запускаем сервер php-fpm
 EXPOSE 9000
 CMD ["php-fpm"]
