@@ -1,0 +1,42 @@
+@extends('index')
+@section('content')
+    <div>
+        <h1>Lorem Ipsum</h1>
+        <h2>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</h2>
+        <h5>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</h5>
+        <hr>
+        <p>
+
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget felis tempor, posuere diam in, porta tortor. Aliquam quis lacus sed purus rhoncus luctus eget sed velit. Sed libero dui, varius venenatis tincidunt eget, accumsan a mauris. Duis id tellus eget dui hendrerit vulputate. Ut aliquam nisi at dui aliquam, ac viverra erat accumsan. Nulla ligula tortor, hendrerit tempor gravida nec, convallis a lacus. Curabitur suscipit nunc a malesuada pulvinar. Sed imperdiet, magna sed vulputate imperdiet, nisi magna mollis magna, tempus auctor velit est a nisl. Ut vel mi vitae nibh ornare scelerisque. Phasellus imperdiet, dolor luctus sollicitudin porta, nulla dui hendrerit nisl, vitae ultricies lectus mauris vitae leo. Donec tincidunt bibendum est ut porttitor. Suspendisse eu consectetur magna. Pellentesque mauris orci, porta at nunc eget, convallis varius nulla. Aenean commodo tortor ipsum, ac euismod nisi interdum et. Nullam eros nunc, sagittis id placerat in, consectetur eget nibh.
+
+            Nullam rutrum gravida elit, eget pretium metus pretium non. Nullam nec dolor sit amet velit eleifend accumsan quis ac purus. Nunc tortor lorem, elementum viverra finibus ac, molestie pulvinar orci. Fusce ultricies, enim eu varius aliquam, leo lacus maximus sem, ut commodo orci quam vel felis. Donec at nulla sed tortor ullamcorper fringilla. Sed sit amet porta urna, eu egestas neque. Nulla gravida, massa ac aliquet tincidunt, elit urna volutpat est, non porttitor dui tellus et leo. Proin feugiat nisi id rhoncus finibus. Duis tincidunt pellentesque blandit. Nulla in nisi ut enim ullamcorper suscipit. Maecenas a imperdiet lorem. Nullam ultricies nibh vel neque tincidunt, vitae dictum felis vulputate. Morbi elit neque, pharetra at vulputate vel, varius sed leo. In felis odio, porta vel dapibus eu, lacinia a leo. Nullam a dapibus diam, quis accumsan justo.
+
+            In lacus dui, cursus ac arcu at, facilisis blandit sem. Etiam in dolor at odio accumsan posuere imperdiet vitae turpis. Maecenas id libero nec tellus eleifend gravida eu luctus arcu. Nullam pellentesque porta risus. Vestibulum nec turpis pellentesque, facilisis lectus sed, sagittis risus. Maecenas at arcu sed augue ultrices vulputate ut ut urna. Ut non urna sit amet metus porttitor vehicula. Donec consectetur nisi sit amet dolor tempor, nec auctor orci maximus. Sed aliquam facilisis eros in imperdiet. Nam vitae mauris ac risus iaculis sagittis. Curabitur sit amet dignissim ex.
+
+            Proin et purus libero. Cras at fermentum lorem, eu ullamcorper dui. Quisque pharetra ac arcu sed tempus. In sed massa non metus tristique auctor id ut justo. Nullam tempus dapibus tortor. Vivamus sed nibh eget odio tempus accumsan sed vel ligula. Donec facilisis aliquet ipsum, id feugiat leo malesuada a. Etiam pharetra lorem vitae suscipit fermentum. Sed et porta ex. Maecenas interdum sagittis lacus varius euismod. Vestibulum dignissim cursus nibh, vel rutrum mi suscipit vel. Quisque malesuada tortor nec semper venenatis. Vestibulum vulputate vitae ante sed facilisis. Sed in arcu id tortor consectetur iaculis. Integer dictum diam id lacus eleifend, id varius dui tempus.
+
+            Proin maximus risus dolor. Quisque congue fermentum mauris at lacinia. Nullam quis magna sed libero consectetur rutrum et vel est. Duis quis purus quam. Nulla a ante vitae libero ornare finibus non sit amet tellus. Aenean tincidunt faucibus lectus quis pulvinar. Fusce a pulvinar lacus. Nam sodales velit lobortis, tempus odio quis, malesuada tellus. Vivamus volutpat mattis aliquam. Ut viverra varius arcu, et laoreet eros vulputate et. Vestibulum mattis at eros quis tempor. Vestibulum venenatis venenatis augue, ac vulputate mi. Quisque feugiat neque a faucibus vehicula. Donec mattis metus eget aliquam consequat. Etiam iaculis sapien eget dolor accumsan, id sollicitudin libero iaculis.
+        </p>
+        <hr>
+        <p style="font-family: bold">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+        <hr>
+        <div>
+            <img src="https://img.goodfon.ru/wallpaper/big/d/1c/smailiki-zheltye-shary-ulybki.webp">
+        </div>
+        <hr>
+        <p>
+
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget felis tempor, posuere diam in, porta tortor. Aliquam quis lacus sed purus rhoncus luctus eget sed velit. Sed libero dui, varius venenatis tincidunt eget, accumsan a mauris. Duis id tellus eget dui hendrerit vulputate. Ut aliquam nisi at dui aliquam, ac viverra erat accumsan. Nulla ligula tortor, hendrerit tempor gravida nec, convallis a lacus. Curabitur suscipit nunc a malesuada pulvinar. Sed imperdiet, magna sed vulputate imperdiet, nisi magna mollis magna, tempus auctor velit est a nisl. Ut vel mi vitae nibh ornare scelerisque. Phasellus imperdiet, dolor luctus sollicitudin porta, nulla dui hendrerit nisl, vitae ultricies lectus mauris vitae leo. Donec tincidunt bibendum est ut porttitor. Suspendisse eu consectetur magna. Pellentesque mauris orci, porta at nunc eget, convallis varius nulla. Aenean commodo tortor ipsum, ac euismod nisi interdum et. Nullam eros nunc, sagittis id placerat in, consectetur eget nibh.
+
+            Nullam rutrum gravida elit, eget pretium metus pretium non. Nullam nec dolor sit amet velit eleifend accumsan quis ac purus. Nunc tortor lorem, elementum viverra finibus ac, molestie pulvinar orci. Fusce ultricies, enim eu varius aliquam, leo lacus maximus sem, ut commodo orci quam vel felis. Donec at nulla sed tortor ullamcorper fringilla. Sed sit amet porta urna, eu egestas neque. Nulla gravida, massa ac aliquet tincidunt, elit urna volutpat est, non porttitor dui tellus et leo. Proin feugiat nisi id rhoncus finibus. Duis tincidunt pellentesque blandit. Nulla in nisi ut enim ullamcorper suscipit. Maecenas a imperdiet lorem. Nullam ultricies nibh vel neque tincidunt, vitae dictum felis vulputate. Morbi elit neque, pharetra at vulputate vel, varius sed leo. In felis odio, porta vel dapibus eu, lacinia a leo. Nullam a dapibus diam, quis accumsan justo.
+
+            In lacus dui, cursus ac arcu at, facilisis blandit sem. Etiam in dolor at odio accumsan posuere imperdiet vitae turpis. Maecenas id libero nec tellus eleifend gravida eu luctus arcu. Nullam pellentesque porta risus. Vestibulum nec turpis pellentesque, facilisis lectus sed, sagittis risus. Maecenas at arcu sed augue ultrices vulputate ut ut urna. Ut non urna sit amet metus porttitor vehicula. Donec consectetur nisi sit amet dolor tempor, nec auctor orci maximus. Sed aliquam facilisis eros in imperdiet. Nam vitae mauris ac risus iaculis sagittis. Curabitur sit amet dignissim ex.
+
+            Proin et purus libero. Cras at fermentum lorem, eu ullamcorper dui. Quisque pharetra ac arcu sed tempus. In sed massa non metus tristique auctor id ut justo. Nullam tempus dapibus tortor. Vivamus sed nibh eget odio tempus accumsan sed vel ligula. Donec facilisis aliquet ipsum, id feugiat leo malesuada a. Etiam pharetra lorem vitae suscipit fermentum. Sed et porta ex. Maecenas interdum sagittis lacus varius euismod. Vestibulum dignissim cursus nibh, vel rutrum mi suscipit vel. Quisque malesuada tortor nec semper venenatis. Vestibulum vulputate vitae ante sed facilisis. Sed in arcu id tortor consectetur iaculis. Integer dictum diam id lacus eleifend, id varius dui tempus.
+
+            Proin maximus risus dolor. Quisque congue fermentum mauris at lacinia. Nullam quis magna sed libero consectetur rutrum et vel est. Duis quis purus quam. Nulla a ante vitae libero ornare finibus non sit amet tellus. Aenean tincidunt faucibus lectus quis pulvinar. Fusce a pulvinar lacus. Nam sodales velit lobortis, tempus odio quis, malesuada tellus. Vivamus volutpat mattis aliquam. Ut viverra varius arcu, et laoreet eros vulputate et. Vestibulum mattis at eros quis tempor. Vestibulum venenatis venenatis augue, ac vulputate mi. Quisque feugiat neque a faucibus vehicula. Donec mattis metus eget aliquam consequat. Etiam iaculis sapien eget dolor accumsan, id sollicitudin libero iaculis.
+        </p>
+    </div>
+@endsection
