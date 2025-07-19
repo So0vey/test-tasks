@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Stock extends Model
 {
+    protected $fillable = [
+        'product_id', 'warehouse_id', 'stock'
+    ];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

@@ -207,17 +207,28 @@ class OrderController extends Controller
             return Redirect::back()->withErrors(['error' => 'Можно отменять только активные заказы']);
         }
 
-        // Возывращение товаров на склад
+        // Возвращение товаров на склад
         foreach ($order->items as $item) {
             $stock = Stock::where([
                 'warehouse_id' => $order->warehouse_id,
                 'product_id' => $item->product_id
             ])->first();
 
-            $stock->increment('stock', $item->count);
+            // Если нет записи о товаре на складе
+            if (!$stock) {
+                $newStock = Stock::create([
+                    'product_id' => $item->product_id,
+                    'warehouse_id' => $order->warehouse_id,
+                    'stock' => $item->count,
+                ]);
+                $stockId = $newStock->id;
+            } else {
+                $stockId = $stock->id;
+                $stock->increment('stock', $item->count);
+            }
 
             StockMovement::create([
-                'stock_id' => $stock->id,
+                'stock_id' => $stockId,
                 'product_id' => $item->product_id,
                 'warehouse_id' => $order->warehouse_id,
                 'quantity_change' => $item->count,
