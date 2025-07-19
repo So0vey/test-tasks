@@ -18,11 +18,6 @@ class Stock extends Model
         return $this->belongsTo(Warehouse::class);
     }
 
-    public function movements()
-    {
-        return $this->hasMany(StockMovement::class);
-    }
-
     // Штука по идее должна автоматически изменять заказы без того, чтобы вручную изменять их через контроллер
 //    protected static function booted()
 //    {
