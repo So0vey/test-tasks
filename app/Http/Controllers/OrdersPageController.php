@@ -30,6 +30,8 @@ class OrdersPageController extends Controller
     }
 
     /**
+     * Возвращает View страницы содержимого конкретного заказа с пагинацией.
+     *
      * @param Request $request
      * @return View
      */
