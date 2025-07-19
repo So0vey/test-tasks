@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
             ['name' => 'Coca-Cola 2л', 'price' => 140, 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Комплект зимней резины', 'price' => 25000, 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Опилки 10л', 'price' => 900, 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Яблочные семечки 1кг', 'price' => 2499.99, 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Литр ртути', 'price' => 1000, 'created_at' => now(), 'updated_at' => now()]
         ];
 

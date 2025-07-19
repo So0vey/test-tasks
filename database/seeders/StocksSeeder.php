@@ -33,7 +33,10 @@ class StocksSeeder extends Seeder
             ['product_id' => 7, 'warehouse_id' => 2, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
             ['product_id' => 7, 'warehouse_id' => 5, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
             ['product_id' => 7, 'warehouse_id' => 6, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
-            ['product_id' => 8, 'warehouse_id' => 8, 'stock' => 1, 'created_at' => now(), 'updated_at' => now()]
+            ['product_id' => 8, 'warehouse_id' => 1, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
+            ['product_id' => 8, 'warehouse_id' => 6, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
+            ['product_id' => 8, 'warehouse_id' => 7, 'stock' => rand(1, 100), 'created_at' => now(), 'updated_at' => now()],
+            ['product_id' => 9, 'warehouse_id' => 8, 'stock' => 1, 'created_at' => now(), 'updated_at' => now()]
         ];
 
         DB::table('stocks')->insert($stocks);
