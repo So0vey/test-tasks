@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -26,7 +26,9 @@ class OrdersPageController extends Controller
 
         $warehousesList = Warehouse::all();
 
-        return view('pages.orders.ordersPage', compact('orderList', 'warehousesList'));
+        $productsList = Product::all();
+
+        return view('pages.orders.ordersPage', compact('orderList', 'warehousesList', 'productsList'));
     }
 
     /**
@@ -42,6 +44,10 @@ class OrdersPageController extends Controller
             ->with('product')
             ->paginate(10);
 
-        return view('pages.orders.orderPage', compact('order', 'orderItems'));
+        $warehousesList = Warehouse::all();
+
+        $productsList = Product::all();
+
+        return view('pages.orders.orderPage', compact('order', 'orderItems', 'warehousesList', 'productsList'));
     }
 }

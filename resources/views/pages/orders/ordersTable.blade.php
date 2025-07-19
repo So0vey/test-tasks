@@ -77,7 +77,26 @@
                         </td>
                         <td class="text-center">{{ $order->created_at->translatedFormat('d.m.Y H:i') }}</td>
                         <td class="text-center">
-                            <a href="{{ route('orderPage', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">Содержимое</a>
+                            <div class="btn-group" role="group">
+                                <a href="{{ route('orderPage', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">Посмотреть и изменить</a>
+                                @if($order->status == 'active')
+                                    <button type="submit" form="complete-form-{{ $order->id }}" class="btn btn-sm btn-success">Завершить</button>
+                                    <button type="submit" form="cancel-form-{{ $order->id }}" class="btn btn-sm btn-danger">Отменить</button>
+                                @elseif($order->status == 'canceled')
+                                    <button type="submit" form="resume-form-{{ $order->id }}" class="btn btn-sm btn-warning">Возобновить</button>
+                                @endif
+                            </div>
+
+                            <form id="complete-form-{{ $order->id }}" method="POST" action="{{ route('completeOrder', $order->id) }}" class="d-none">
+                                @csrf @method('PUT')
+                            </form>
+                            <form id="cancel-form-{{ $order->id }}" method="POST" action="{{ route('cancelOrder', $order->id) }}" class="d-none">
+                                @csrf @method('PUT')
+                            </form>
+                            <form id="resume-form-{{ $order->id }}" method="POST" action="{{ route('resumeOrder', $order->id) }}" class="d-none">
+                                @csrf @method('PUT')
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
@@ -86,7 +105,7 @@
         </div>
 
         <div class="d-flex mt-4">
-            {{ $orderList->appends(request()->query())->links() }}
+            {{ $orderList->links() }}
         </div>
     </div>
 </div>

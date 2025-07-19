@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
+    protected $fillable = [
+        'customer',
+        'warehouse_id',
+        'status',
+        'completed_at'
+    ];
+
     protected $casts = [
         'completed_at' => 'datetime'
     ];

@@ -3,6 +3,11 @@
 @section('orderPageState', 'active')
 @section('content')
     <h1>Содержимое заказа №{{$order->id}}:</h1>
-    <a href="{{route('ordersPage')}}" class="btn btn-primary">Назад</a>
+
+    <div class="mb-3">
+        <a href="{{route('ordersPage')}}" class="btn btn-primary">Назад</a>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editOrderModal">Редактировать заказ</button>
+    </div>
+
     @include('pages.orders.orderTable')
 @endsection
