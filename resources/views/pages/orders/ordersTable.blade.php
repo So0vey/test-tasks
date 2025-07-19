@@ -55,7 +55,7 @@
 
                 <div class="col-md-12 mt-3">
                     <button type="submit" class="btn btn-primary me-2">Применить</button>
-                    <a href="{{ route('ordersPage') }}" class="btn btn-outline-secondary">Сбросить</a>
+                    <a href="{{ route('ordersPage') }}" class="btn btn-secondary">Сбросить</a>
                 </div>
             </div>
         </form>
