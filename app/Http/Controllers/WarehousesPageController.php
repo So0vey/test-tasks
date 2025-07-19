@@ -30,8 +30,7 @@ class WarehousesPageController extends Controller
     public function getStockPage(Request $request): View
     {
         $warehouse = Warehouse::find($request->id);
-        $warehouseStocks = Warehouse::find($request->id)
-            ->stocks()
+        $warehouseStocks = $warehouse->stocks()
             ->with('product')
             ->paginate(10);
 
