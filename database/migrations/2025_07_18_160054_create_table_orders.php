@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('customer');
             $table->unsignedBigInteger('warehouse_id');
             $table->enum('status', ['active', 'completed', 'canceled']);
