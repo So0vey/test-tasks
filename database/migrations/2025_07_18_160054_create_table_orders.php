@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('warehouse_id');
             $table->enum('status', ['active', 'completed', 'canceled']);
 
-            $table->timestamp('completed_at');
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }
