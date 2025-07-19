@@ -17,9 +17,7 @@
                         <td>{{ $warehouse->name }}</td>
                         <td class="text-center">{{ $warehouse->created_at->translatedFormat('d.m.Y H:i') }}</td>
                         <td class="text-center">
-                            <a href="{{ route('warehouseStockPage', ['id' => $warehouse->id]) }}" class="btn btn-sm btn-primary">
-                                Смотреть содержимое
-                            </a>
+                            <a href="{{ route('warehouseStockPage', ['id' => $warehouse->id]) }}" class="btn btn-sm btn-primary">Смотреть содержимое</a>
                         </td>
                     </tr>
                 @endforeach
