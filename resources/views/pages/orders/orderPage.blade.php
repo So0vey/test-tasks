@@ -6,8 +6,14 @@
 
     <div class="mb-3">
         <a href="{{route('ordersPage')}}" class="btn btn-primary">Назад</a>
-        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editOrderModal">Редактировать заказ</button>
+        @if($order->status != 'completed')
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editOrderModal">Редактировать заказ</button>
+        @endif
     </div>
 
     @include('pages.orders.orderTable')
+
+    @if($order->status != 'completed')
+        @include('pages.orders.orderEditModal')
+    @endif
 @endsection

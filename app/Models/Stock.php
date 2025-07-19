@@ -17,4 +17,29 @@ class Stock extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+
+    public function movements()
+    {
+        return $this->hasMany(StockMovement::class);
+    }
+
+    // Штука по идее должна автоматически изменять заказы без того, чтобы вручную изменять их через контроллер
+//    protected static function booted()
+//    {
+//        static::updated(function ($stock) {
+//            if ($stock->isDirty('stock')) {
+//                $change = $stock->stock - $stock->getOriginal('stock');
+//
+//                StockMovement::create([
+//                    'stock_id' => $stock->id,
+//                    'product_id' => $stock->product_id,
+//                    'warehouse_id' => $stock->warehouse_id,
+//                    'quantity_change' => $change,
+//                    'movement_type' => 'Регулирование',
+//                    'user_id' => auth()->id(),
+//                    'notes' => 'Автоматическое регулирование'
+//                ]);
+//            }
+//        });
+//    }
 }

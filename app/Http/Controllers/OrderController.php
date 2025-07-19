@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Stock;
+use App\Models\StockMovement;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -42,20 +47,38 @@ class OrderController extends Controller
         // Списание остатовк
         foreach ($validated['items'] as $item) {
             $order->items()->create([
-                    'product_id' => $item['product_id'],
-                    'count' => $item['count']
-                ]
-            );
+                'product_id' => $item['product_id'],
+                'count' => $item['count']
+            ]);
 
-            Stock::where([
+            $stock = Stock::where([
                 'warehouse_id' => $validated['warehouse_id'],
                 'product_id' => $item['product_id']
-            ])->decrement('stock', $item['count']);
+            ])->first();
+
+            $stock->decrement('stock', $item['count']);
+
+            // Запись движения товара
+            StockMovement::create([
+                'stock_id' => $stock->id,
+                'product_id' => $item['product_id'],
+                'warehouse_id' => $validated['warehouse_id'],
+                'quantity_change' => -$item['count'],
+                'movement_type' => 'order',
+                'order_id' => $order->id,
+                'user_id' => auth()->id(),
+                'notes' => 'Создание заказа #' . $order->id
+            ]);
         }
 
         return Redirect::route('ordersPage')->with('success', 'Заказ успешно создан');
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function update(Request $request, $id): RedirectResponse
     {
         $order = Order::find($id);
@@ -79,10 +102,23 @@ class OrderController extends Controller
         if ($request->has('items')) {
             // Возвращение остатков
             foreach ($order->items as $item) {
-                Stock::where([
+                $stock = Stock::where([
                     'warehouse_id' => $order->warehouse_id,
                     'product_id' => $item->product_id
-                ])->increment('stock', $item->count);
+                ])->first();
+
+                $stock->increment('stock', $item->count);
+
+                StockMovement::create([
+                    'stock_id' => $stock->id,
+                    'product_id' => $item->product_id,
+                    'warehouse_id' => $order->warehouse_id,
+                    'quantity_change' => $item->count,
+                    'movement_type' => 'Заказ был обновлен вручную',
+                    'order_id' => $order->id,
+                    'user_id' => auth()->id(),
+                    'notes' => 'Возврат при обновлении заказа #' . $order->id
+                ]);
             }
 
             // Удаление старые позиции
@@ -119,16 +155,33 @@ class OrderController extends Controller
                     'count' => $item['count']
                 ]);
 
-                Stock::where([
+                $stock = Stock::where([
                     'warehouse_id' => $order->warehouse_id,
                     'product_id' => $item['product_id']
-                ])->decrement('stock', $item['count']);
+                ])->first();
+
+                $stock->decrement('stock', $item['count']);
+
+                StockMovement::create([
+                    'stock_id' => $stock->id,
+                    'product_id' => $item['product_id'],
+                    'warehouse_id' => $order->warehouse_id,
+                    'quantity_change' => -$item['count'],
+                    'movement_type' => 'Заказ',
+                    'order_id' => $order->id,
+                    'user_id' => auth()->id(),
+                    'notes' => 'Обновление заказа #' . $order->id
+                ]);
             }
         }
 
         return Redirect::route('orderPage', ['id' => $order->id])->with('success', 'Заказ успешно обновлен');
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function complete($id): RedirectResponse
     {
         $order = Order::find($id);
@@ -145,6 +198,10 @@ class OrderController extends Controller
         return Redirect::back()->with('success', 'Заказ успешно завершен');
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function cancel($id): RedirectResponse
     {
         $order = Order::findOrFail($id);
@@ -155,16 +212,33 @@ class OrderController extends Controller
 
         // Возывращение товаров на склад
         foreach ($order->items as $item) {
-            Stock::where([
+            $stock = Stock::where([
                 'warehouse_id' => $order->warehouse_id,
                 'product_id' => $item->product_id
-            ])->increment('stock', $item->count);
+            ])->first();
+
+            $stock->increment('stock', $item->count);
+
+            StockMovement::create([
+                'stock_id' => $stock->id,
+                'product_id' => $item->product_id,
+                'warehouse_id' => $order->warehouse_id,
+                'quantity_change' => $item->count,
+                'movement_type' => 'Отмена заказа',
+                'order_id' => $order->id,
+                'user_id' => auth()->id(),
+                'notes' => 'Отмена заказа #' . $order->id
+            ]);
         }
 
         $order->update(['status' => 'canceled']);
         return Redirect::back()->with('success', 'Заказ успешно отменен');
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function resume($id): RedirectResponse
     {
         $order = Order::findOrFail($id);
@@ -187,11 +261,25 @@ class OrderController extends Controller
 
         // Списывание товаров
         foreach ($order->items as $item) {
-            Stock::where([
+            $stock = Stock::where([
                 'warehouse_id' => $order->warehouse_id,
                 'product_id' => $item->product_id
-            ])->decrement('stock', $item->count);
+            ])->first();
+
+            $stock->decrement('stock', $item->count);
+
+            StockMovement::create([
+                'stock_id' => $stock->id,
+                'product_id' => $item->product_id,
+                'warehouse_id' => $order->warehouse_id,
+                'quantity_change' => -$item->count,
+                'movement_type' => 'Заказ',
+                'order_id' => $order->id,
+                'user_id' => auth()->id(),
+                'notes' => 'Возобновление заказа #' . $order->id
+            ]);
         }
+
 
         $order->update(['status' => 'active']);
         return Redirect::back()->with('success', 'Заказ успешно возобновлен');

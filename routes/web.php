@@ -3,6 +3,7 @@
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdersPageController;
+use App\Http\Controllers\StockMovementPageController;
 use App\Http\Controllers\WarehousesPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::put('orders/{id}/complete', [OrderController::class, 'complete'])->name('
 Route::put('orders/{id}/cancel', [OrderController::class, 'cancel'])->name('cancelOrder');
 Route::put('orders/{id}/update', [OrderController::class, 'update'])->name('updateOrder');
 Route::put('orders/{id}/resume', [OrderController::class, 'resume'])->name('resumeOrder');
+
+// История движения
+Route::get('/stock-movements', [StockMovementPageController::class, 'getPage'])->name('stockMovementsPage');

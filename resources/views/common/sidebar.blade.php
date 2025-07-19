@@ -12,6 +12,9 @@
             <li class="nav-item">
                 <a class="nav-link @yield('orderPageState')" href="{{route('ordersPage')}}">Список заказов</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @yield('stockMovementPageState')" href="{{route('stockMovementsPage')}}">История движений</a>
+            </li>
         </ul>
     </div>
 </div>
