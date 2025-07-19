@@ -29,7 +29,7 @@ class WarehousesPageController extends Controller
      */
     public function getStockPage(Request $request): View
     {
-        $warehouse = Warehouse::find($request->id);
+        $warehouse = Warehouse::findOrFail($request->id);
         $warehouseStocks = $warehouse->stocks()
             ->with('product')
             ->paginate(10);

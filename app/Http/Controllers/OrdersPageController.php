@@ -39,7 +39,7 @@ class OrdersPageController extends Controller
      */
     public function getOrderPage(Request $request): View
     {
-        $order = Order::find($request->id);
+        $order = Order::findOrFail($request->id);
         $orderItems = $order->items()
             ->with('product')
             ->paginate(10);

@@ -80,7 +80,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $order = Order::find($id);
+        $order = Order::findOrFail($id);
 
         if ($order->status !== 'active') {
             return Redirect::back()->withErrors(['error' => 'Можно обновлять только активные заказы']);
@@ -181,7 +181,7 @@ class OrderController extends Controller
      */
     public function complete($id): RedirectResponse
     {
-        $order = Order::find($id);
+        $order = Order::findOrFail($id);
 
         if ($order->status !== 'active') {
             return Redirect::back()->withErrors(['error' => 'Можно завершать только активные заказы']);
