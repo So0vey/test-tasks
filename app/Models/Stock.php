@@ -36,7 +36,6 @@ class Stock extends Model
 //                    'warehouse_id' => $stock->warehouse_id,
 //                    'quantity_change' => $change,
 //                    'movement_type' => 'Регулирование',
-//                    'user_id' => auth()->id(),
 //                    'notes' => 'Автоматическое регулирование'
 //                ]);
 //            }

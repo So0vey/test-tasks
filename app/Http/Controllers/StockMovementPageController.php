@@ -19,7 +19,7 @@ class StockMovementPageController extends Controller
             ->when($request->date_to, function($q, $date) {return $q->where('created_at', '<=', $date);})
             ->when($request->movement_type, function($q, $type) {return $q->where('movement_type', $type);})
             ->orderBy('created_at', 'desc')
-            ->paginate($request->per_page ?? 15);
+            ->simplePaginate($request->per_page ?? 15);
 
         $warehouses = Warehouse::all();
         $products = Product::all();

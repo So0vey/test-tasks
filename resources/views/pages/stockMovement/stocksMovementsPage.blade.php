@@ -71,7 +71,6 @@
                             <th>Тип</th>
                             <th>Изменение</th>
                             <th>Заказ</th>
-                            <th>Пользователь</th>
                             <th>Примечание</th>
                         </tr>
                         </thead>
@@ -90,7 +89,6 @@
                                         <a href="{{ route('orderPage', $movement->order->id) }}">#{{ $movement->order->id }}</a>
                                     @endif
                                 </td>
-                                <td>{{ $movement->user->name ?? 'Система' }}</td>
                                 <td>{{ $movement->notes }}</td>
                             </tr>
                         @endforeach

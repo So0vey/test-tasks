@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('quantity_change'); // приход и расход
             $table->string('movement_type'); // purchase, sale, adjustment, return, etc.
             $table->foreignId('order_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
