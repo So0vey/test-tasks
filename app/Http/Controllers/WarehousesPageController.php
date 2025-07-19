@@ -8,17 +8,25 @@ use Illuminate\View\View;
 
 class WarehousesPageController extends Controller
 {
-    public function getPage(): View
+    /**
+     * Возвращает View со списком всех складов с пагинацией.
+     *
+     * @return View
+     */
+    public function getWarehousesPage(): View
     {
-        $warehousesList = Warehouse::select(['id', 'name', 'created_at'])
-            ->orderBy('id')
+        $warehousesList = Warehouse::orderBy('id')
             ->simplePaginate(5);
 
-        return view('pages.warehouses.warehousesPage', [
-            'warehousesList' => $warehousesList
-        ]);
+        return view('pages.warehouses.warehousesPage', compact('warehousesList'));
     }
 
+    /**
+     * Возвращает View со списком остатков с пагинацией.
+     *
+     * @param Request $request
+     * @return View
+     */
     public function getStockPage(Request $request): View
     {
         $warehouse = Warehouse::find($request->id);
@@ -27,9 +35,6 @@ class WarehousesPageController extends Controller
             ->with('product')
             ->paginate(10);
 
-        return view('pages.warehouses.warehouseStockPage', [
-            'warehouse' => $warehouse,
-            'warehouseStocks' => $warehouseStocks
-        ]);
+        return view('pages.warehouses.warehouseStockPage', compact('warehouse', 'warehouseStocks'));
     }
 }
