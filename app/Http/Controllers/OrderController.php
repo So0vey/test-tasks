@@ -66,7 +66,6 @@ class OrderController extends Controller
                 'quantity_change' => -$item['count'],
                 'movement_type' => 'order',
                 'order_id' => $order->id,
-                'user_id' => auth()->id(),
                 'notes' => 'Создание заказа #' . $order->id
             ]);
         }
@@ -116,7 +115,6 @@ class OrderController extends Controller
                     'quantity_change' => $item->count,
                     'movement_type' => 'Заказ был обновлен вручную',
                     'order_id' => $order->id,
-                    'user_id' => auth()->id(),
                     'notes' => 'Возврат при обновлении заказа #' . $order->id
                 ]);
             }
@@ -169,7 +167,6 @@ class OrderController extends Controller
                     'quantity_change' => -$item['count'],
                     'movement_type' => 'Заказ',
                     'order_id' => $order->id,
-                    'user_id' => auth()->id(),
                     'notes' => 'Обновление заказа #' . $order->id
                 ]);
             }
@@ -226,7 +223,6 @@ class OrderController extends Controller
                 'quantity_change' => $item->count,
                 'movement_type' => 'Отмена заказа',
                 'order_id' => $order->id,
-                'user_id' => auth()->id(),
                 'notes' => 'Отмена заказа #' . $order->id
             ]);
         }
@@ -275,7 +271,6 @@ class OrderController extends Controller
                 'quantity_change' => -$item->count,
                 'movement_type' => 'Заказ',
                 'order_id' => $order->id,
-                'user_id' => auth()->id(),
                 'notes' => 'Возобновление заказа #' . $order->id
             ]);
         }
