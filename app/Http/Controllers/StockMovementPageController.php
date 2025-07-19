@@ -12,7 +12,7 @@ class StockMovementPageController extends Controller
     public function getPage(Request $request): View
     {
         $movements = StockMovement::query()
-            ->with(['product', 'warehouse', 'order', 'user'])
+            ->with(['product', 'warehouse', 'order'])
             ->when($request->warehouse_id, function($q, $warehouseId) {return $q->where('warehouse_id', $warehouseId);})
             ->when($request->product_id, function($q, $productId) {return $q->where('product_id', $productId);})
             ->when($request->date_from, function($query, $date) {return $query->where('created_at', '>=', $date);})

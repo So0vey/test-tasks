@@ -22,7 +22,7 @@ class OrdersPageController extends Controller
             ->when($request->warehouse_id, fn($q, $warehouseId) => $q->where('warehouse_id', $warehouseId))
             ->orderBy($request->sortBy ?? 'id', $request->sortType ?? 'asc')
             ->with('warehouse')
-            ->simplePaginate(5);
+            ->simplePaginate($request->per_page ?? 5);
 
         $warehousesList = Warehouse::all();
 

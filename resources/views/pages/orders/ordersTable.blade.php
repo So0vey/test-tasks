@@ -44,6 +44,15 @@
                     </select>
                 </div>
 
+                <div class="col">
+                    <label for="per_page" class="form-label">На странице</label>
+                    <select class="form-select" id="per_page" name="per_page">
+                        <option value="5" {{ request('per_page', 5) == 5 ? 'selected' : '' }}>5</option>
+                        <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                        <option value="15" {{ request('per_page') == 15 ? 'selected' : '' }}>15</option>
+                    </select>
+                </div>
+
                 <div class="col-md-12 mt-3">
                     <button type="submit" class="btn btn-primary me-2">Применить</button>
                     <a href="{{ route('ordersPage') }}" class="btn btn-outline-secondary">Сбросить</a>
